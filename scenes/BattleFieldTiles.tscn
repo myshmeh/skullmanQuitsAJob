@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/BattleFieldTile.tscn" type="PackedScene" id=1]
+
+[node name="BattleFieldTiles" type="Node2D"]
+position = Vector2( -4, 0 )
+
+[node name="PlayerTiles" type="Node2D" parent="."]
+position = Vector2( -4, 0 )
+
+[node name="BattleFieldTile" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -40, -16 )
+
+[node name="BattleFieldTile2" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -40, 0 )
+
+[node name="BattleFieldTile3" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -40, 16 )
+
+[node name="BattleFieldTile4" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -24, -16 )
+
+[node name="BattleFieldTile5" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -24, 0 )
+
+[node name="BattleFieldTile6" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -24, 16 )
+
+[node name="BattleFieldTile7" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -8, -16 )
+
+[node name="BattleFieldTile8" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -8, 0 )
+
+[node name="BattleFieldTile9" parent="PlayerTiles" instance=ExtResource( 1 )]
+position = Vector2( -8, 16 )
+
+[node name="EnemyTiles" type="Node2D" parent="."]
+position = Vector2( -4, 0 )
+
+[node name="BattleFieldTile10" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 16, -16 )
+
+[node name="BattleFieldTile11" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 16, 0 )
+
+[node name="BattleFieldTile12" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 16, 16 )
+
+[node name="BattleFieldTile13" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 32, -16 )
+
+[node name="BattleFieldTile14" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 32, 0 )
+
+[node name="BattleFieldTile15" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 32, 16 )
+
+[node name="BattleFieldTile16" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 48, -16 )
+
+[node name="BattleFieldTile17" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 48, 0 )
+
+[node name="BattleFieldTile18" parent="EnemyTiles" instance=ExtResource( 1 )]
+position = Vector2( 48, 16 )
