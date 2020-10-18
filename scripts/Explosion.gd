@@ -6,7 +6,6 @@ var emitted: bool
 func _ready():
 	particle.emitting = true
 	emitted = true
-	print('emit')
 
 func _process(delta):
 	if !particle.emitting:

@@ -2,11 +2,15 @@ extends Node2D
 
 export var start_pure_position_x: int = 1
 export var start_pure_position_y: int = 1
+export var life_max: int = 10
+var life: int
 var velocity: Vector2
 var pure_position: Vector2
 var offset_position: Vector2
+signal enemy_dead(position)
 
 func _ready():
+	life = life_max
 	velocity = Vector2.ZERO
 	pure_position = Vector2(start_pure_position_x, start_pure_position_y)
 	offset_position = Vector2.ZERO
@@ -29,4 +33,11 @@ func amplify_pure_position(pure_position: Vector2, offset_position: Vector2, til
 	)
 
 func take_hit(power: int):
-	print("took hit of ", power)
+	life = apply_damage(life, power)
+	if life == 0:
+		print(self.name, " is dead")
+		emit_signal("enemy_dead", global_position)
+		queue_free()
+
+func apply_damage(life:int, damage: int) -> int:
+	return int(clamp(life - damage, 0, life_max))

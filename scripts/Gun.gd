@@ -5,7 +5,7 @@ onready var raycast: RayCast2D = $RayCast2D
 export var power = 1
 var shootable: bool
 
-signal on_shot_collided(position)
+signal shot_collided(position)
 
 func _ready():
 	shootable = true
@@ -20,7 +20,7 @@ func shoot():
 		var object = raycast.get_collider()
 		if object.has_method("take_hit"):
 			object.take_hit(power)
-		emit_signal("on_shot_collided", raycast.get_collision_point())
+		emit_signal("shot_collided", raycast.get_collision_point())
 	animation_player.play("Shoot")
 
 func enable_shoot():
