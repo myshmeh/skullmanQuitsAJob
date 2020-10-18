@@ -2,7 +2,10 @@ extends Node2D
 
 export var start_pure_position_x: int = 1
 export var start_pure_position_y: int = 1
+export var life_max: int = 50
 onready var gun = $Gun
+onready var life_indicator = $LifeIndicator
+var life: int
 var velocity: Vector2
 var pure_position: Vector2
 var offset_position: Vector2
@@ -11,6 +14,8 @@ func _ready():
 	velocity = Vector2.ZERO
 	pure_position = Vector2(start_pure_position_x, start_pure_position_y)
 	offset_position = Vector2.ZERO
+	life = life_max
+	life_indicator.text = String(life)
 
 func _process(delta):
 	velocity = translate_input_to_velocity()

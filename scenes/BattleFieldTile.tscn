@@ -1,9 +1,54 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://images/environmentals/battle_field_tile.png" type="Texture" id=1]
+[ext_resource path="res://images/environmentals/battle_field_tile2.png" type="Texture" id=2]
 
+[sub_resource type="GDScript" id=2]
+script/source = "extends RigidBody2D
 
-[node name="BattleFieldTile" type="Node2D"]
+export var player_collision_mask: int = 1
+onready var animated_sprite = $AnimatedSprite
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+func _ready():
+	animated_sprite.play(\"idle\")
+
+func _on_BattleFieldTile_body_entered(body):
+	collision_mask = player_collision_mask
+	animated_sprite.play(\"attacked\")
+
+func _on_BattleFieldTile_body_exited(body):
+	collision_mask = player_collision_mask
+	animated_sprite.play(\"idle\")
+"
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "attacked",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="BattleFieldTile" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 0
+mode = 3
+script = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_BattleFieldTile_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_BattleFieldTile_body_exited"]

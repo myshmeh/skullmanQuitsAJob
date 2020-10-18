@@ -15,4 +15,8 @@ texture = ExtResource( 3 )
 [node name="Timer" type="Timer" parent="." index="1"]
 wait_time = 2.0
 autostart = true
+
+[node name="LifeIndicator" parent="." index="3"]
+margin_top = -27.9002
+margin_bottom = -13.9002
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
