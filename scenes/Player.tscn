@@ -13,9 +13,8 @@ size = 8
 outline_size = 1
 font_data = ExtResource( 4 )
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="Area2D"]
 collision_mask = 0
-mode = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -47,3 +46,4 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

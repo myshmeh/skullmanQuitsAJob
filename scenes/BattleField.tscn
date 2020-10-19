@@ -43,7 +43,9 @@ position = Vector2( 140, 64 )
 [node name="EnemyWrapper" type="Node2D" parent="."]
 
 [node name="Slime" parent="EnemyWrapper" instance=ExtResource( 6 )]
-position = Vector2( 172, 64 )
-collision_mask = 2147483648
+position = Vector2( 156, 80 )
 
-[editable path="BattleFieldTiles"]
+[node name="Slime2" parent="EnemyWrapper" instance=ExtResource( 6 )]
+position = Vector2( 172, 96 )
+start_pure_position_x = 2
+start_pure_position_y = 2

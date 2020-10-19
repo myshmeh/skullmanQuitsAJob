@@ -1,27 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://images/environmentals/battle_field_tile.png" type="Texture" id=1]
 [ext_resource path="res://images/environmentals/battle_field_tile2.png" type="Texture" id=2]
+[ext_resource path="res://scripts/BattleFieldTile.gd" type="Script" id=3]
+[ext_resource path="res://scripts/BattleFieldTileRigidBody2D.gd" type="Script" id=4]
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends RigidBody2D
-
-export var player_collision_mask: int = 1
-onready var animated_sprite = $AnimatedSprite
-
-func _ready():
-	animated_sprite.play(\"idle\")
-
-func _on_BattleFieldTile_body_entered(body):
-	collision_mask = player_collision_mask
-	animated_sprite.play(\"attacked\")
-
-func _on_BattleFieldTile_body_exited(body):
-	collision_mask = player_collision_mask
-	animated_sprite.play(\"idle\")
-"
-
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -34,21 +18,32 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7, 7 )
 
-[node name="BattleFieldTile" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 7 )
+
+[node name="BattleFieldTile" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
-mode = 3
-script = SubResource( 2 )
+script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 4
+mode = 3
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 4 )
+disabled = true
 [connection signal="body_entered" from="." to="." method="_on_BattleFieldTile_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_BattleFieldTile_body_exited"]

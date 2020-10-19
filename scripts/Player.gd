@@ -9,6 +9,8 @@ var life: int
 var velocity: Vector2
 var pure_position: Vector2
 var offset_position: Vector2
+signal attack_collided(position)
+signal use_item()
 
 func _ready():
 	velocity = Vector2.ZERO
@@ -22,6 +24,8 @@ func _process(delta):
 	pure_position += velocity
 	pure_position = bind_pure_position(pure_position, Global.TILE_NUM_X, Global.TILE_NUM_Y)
 	position = amplify_pure_position(pure_position, offset_position, Global.TILE_WIDTH)
+	if Input.is_action_just_pressed("use_item"):
+		emit_signal("use_item")
 	if Input.is_action_just_pressed("ui_accept"):
 		gun.shoot()
 
@@ -53,3 +57,26 @@ func amplify_pure_position(pure_position: Vector2, offset_position: Vector2, til
 		offset_position.x + pure_position.x * tile_width,
 		offset_position.y + pure_position.y * tile_width
 	)
+
+func _on_Player_body_entered(body):
+	emit_signal("attack_collided", position)
+	take_hit(body.power)
+
+func take_hit(power: int):
+	life = apply_damage(life, power)
+	set_life_indicator_text(String(life))
+	if life == 0:
+		die()
+
+func apply_damage(life:int, damage: int) -> int:
+	return int(clamp(life - damage, 0, 999))
+
+func set_life(value: int):
+	life = value
+	set_life_indicator_text(String(life))
+
+func set_life_indicator_text(text: String):
+	life_indicator.text = text
+
+func die():
+	print("player is dead")

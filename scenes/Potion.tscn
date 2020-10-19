@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Potion.gd" type="Script" id=2]
+[ext_resource path="res://images/environmentals/explosion_bit2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/PotionFx.tscn" type="PackedScene" id=4]
+
+[node name="Potion" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="ItemInUI" index="0"]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 3 )
+
+[node name="PotionFx" parent="ItemInBattleField" index="0" instance=ExtResource( 4 )]
