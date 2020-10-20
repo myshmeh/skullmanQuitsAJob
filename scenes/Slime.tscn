@@ -19,5 +19,4 @@ autostart = true
 [node name="LifeIndicator" parent="." index="3"]
 margin_top = -27.9002
 margin_bottom = -13.9002
-custom_colors/font_outline_modulate = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 [connection signal="timeout" from="MoveTImer" to="." method="_on_MoveTimer_timeout"]

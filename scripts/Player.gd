@@ -60,7 +60,14 @@ func amplify_pure_position(pure_position: Vector2, offset_position: Vector2, til
 
 func _on_Player_body_entered(body):
 	emit_signal("attack_collided", position)
-	take_hit(body.power)
+	if !body.has_method("get_power"):
+		printerr(body.name, " does not have a method 'get_power'. consider to extend the Damagable.gd script")
+		return
+	take_hit(body.get_power())
+	if !body.has_method("do_after_damaged"):
+		printerr(body.name, " does not have a method 'do_after_damaged'. consider to extend the Damagable.gd script")
+		return
+	body.do_after_damaged()
 
 func take_hit(power: int):
 	life = apply_damage(life, power)

@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/BattleFieldTile.gd" type="Script" id=3]
 [ext_resource path="res://scripts/BattleFieldTileRigidBody2D.gd" type="Script" id=4]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -18,10 +18,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 7 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7, 7 )
 
 [node name="BattleFieldTile" type="Area2D"]
@@ -30,12 +30,12 @@ collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 collision_layer = 4
@@ -43,7 +43,7 @@ mode = 3
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 disabled = true
 [connection signal="body_entered" from="." to="." method="_on_BattleFieldTile_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_BattleFieldTile_body_exited"]

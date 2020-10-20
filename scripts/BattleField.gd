@@ -9,6 +9,7 @@ onready var item_boxes = $ItemBoxes
 onready var explosion_particle = preload("res://scenes/Explosion.tscn")
 onready var win_message = preload("res://scenes/WinMessage.tscn")
 onready var potion = preload("res://scenes/Potion.tscn")
+onready var bomb = preload("res://scenes/Bomb.tscn")
 var won: bool
 var items: Array
 
@@ -24,7 +25,7 @@ func _ready():
 		enemy.position = enemy.amplify_pure_position(enemy.pure_position, enemy.offset_position, Global.TILE_WIDTH)
 		enemy.connect("enemy_dead", self, "on_Enemy_enemy_dead")
 	won = false
-	set_items([potion, potion, potion])
+	set_items([bomb, potion, bomb])
 
 func _process(delta):
 	if enemy_wrapper.get_child_count() == 0 && !won:

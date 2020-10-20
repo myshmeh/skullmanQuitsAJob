@@ -2,7 +2,6 @@
 
 [ext_resource path="res://images/environmentals/battle_field_tile2.png" type="Texture" id=1]
 
-
 [node name="BattleFieldTile2" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 export var start_pure_position_x: int = 1
 export var start_pure_position_y: int = 1
@@ -43,3 +43,13 @@ func take_hit(power: int):
 
 func apply_damage(life:int, damage: int) -> int:
 	return int(clamp(life - damage, 0, life_max))
+
+func _on_Enemy_body_entered(body):
+	if !body.has_method("get_power"):
+		printerr(body.name, " does not have a method 'get_power'. consider to extend the Damagable.gd script")
+		return
+	take_hit(body.get_power())
+	if !body.has_method("do_after_damaged"):
+		printerr(body.name, " does not have a method 'do_after_damaged'. consider to extend the Damagable.gd script")
+		return
+	body.do_after_damaged()

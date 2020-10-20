@@ -9,7 +9,8 @@ func _ready():
 
 func _on_BattleFieldTile_body_entered(body):
 	rigid_body_collision_shape.set_deferred("disabled", false)
-	rigid_body.power = body.power
+	rigid_body.set_power(body.power)
+	rigid_body.set_damage_delegator(body)
 	animated_sprite.play("attacked")
 
 func _on_BattleFieldTile_body_exited(body):

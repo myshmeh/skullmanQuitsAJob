@@ -1,9 +1,16 @@
-extends RigidBody2D
+extends "res://scripts/Damagable.gd"
 
-var power: int
+var damage_delegator: Node2D = null
 
-func _ready():
-	power = 0
+func set_damage_delegator(value: Node2D):
+	damage_delegator = value
 
-#func _process(delta):
-#	pass
+func set_power(value: int):
+	power = value
+
+func do_after_damaged():
+	if damage_delegator == null:
+		printerr("damage_delegator is not set. yse 'set_damage_delegator()' to set it.")
+		return
+	damage_delegator.queue_free()
+	
