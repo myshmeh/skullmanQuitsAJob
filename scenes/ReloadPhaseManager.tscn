@@ -1,0 +1,207 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scripts/ReloadPhaseManager.gd" type="Script" id=1]
+[ext_resource path="res://scenes/PotionInReloadScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/user_interfaces/item_box.png" type="Texture" id=3]
+[ext_resource path="res://Early GameBoy.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/Selectable.gd" type="Script" id=5]
+[ext_resource path="res://scenes/InvincibleSuitInReloadScene.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/BombInReloadScene.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Pointer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 6
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 4 )
+
+[node name="ReloadPhaseManager" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Background" parent="." instance=ExtResource( 9 )]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Guide" type="Control" parent="UI"]
+anchor_top = 0.0666667
+anchor_right = 1.0
+anchor_bottom = 0.213333
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="UI/Guide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "select 3 items"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemContainer" type="HBoxContainer" parent="UI"]
+anchor_left = 0.40625
+anchor_top = 0.746667
+anchor_right = 0.78125
+anchor_bottom = 0.906667
+margin_top = -80.0
+margin_right = -64.0
+margin_bottom = -96.0
+rect_scale = Vector2( 1.5, 1.5 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bomb" parent="UI/ItemContainer" instance=ExtResource( 7 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 8.0
+margin_bottom = 8.0
+script = ExtResource( 5 )
+
+[node name="BombAmount" type="Label" parent="UI/ItemContainer/Bomb"]
+anchor_left = 0.166666
+anchor_top = 0.0416667
+anchor_right = 1.16667
+anchor_bottom = 2.66667
+rect_pivot_offset = Vector2( 12, 16 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "3
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Potion" parent="UI/ItemContainer" instance=ExtResource( 2 )]
+margin_left = 12.0
+margin_top = 0.0
+margin_right = 20.0
+margin_bottom = 8.0
+script = ExtResource( 5 )
+
+[node name="PotionAmount" type="Label" parent="UI/ItemContainer/Potion"]
+anchor_left = 0.166666
+anchor_top = -7.15256e-07
+anchor_right = 1.16667
+anchor_bottom = 2.625
+rect_pivot_offset = Vector2( 12, 16 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "3
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Invincible Suit" parent="UI/ItemContainer" instance=ExtResource( 6 )]
+margin_left = 24.0
+margin_top = 0.0
+margin_right = 32.0
+margin_bottom = 8.0
+script = ExtResource( 5 )
+
+[node name="InvincibleSuitAmount" type="Label" parent="UI/ItemContainer/Invincible Suit"]
+anchor_left = 0.166665
+anchor_top = -7.15256e-07
+anchor_right = 1.16667
+anchor_bottom = 2.625
+rect_pivot_offset = Vector2( 12, 16 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "3
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Control" parent="UI"]
+anchor_left = 0.203125
+anchor_top = 0.373333
+anchor_right = 0.796875
+anchor_bottom = 0.72
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="UI/Description"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.188235, 0.384314, 0.188235, 1 )
+text = "bomb:
+blows 3 vertical lines with 5 LP damage."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemBoxContainer" type="HBoxContainer" parent="UI"]
+anchor_left = 0.335938
+anchor_top = 0.746667
+anchor_right = 0.773438
+anchor_bottom = 0.96
+margin_right = -56.0
+margin_bottom = -16.0
+rect_scale = Vector2( 1.5, 1.5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ItemBox1" type="TextureRect" parent="UI/ItemBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+type_key = "item_box"
+
+[node name="ItemBox2" type="TextureRect" parent="UI/ItemBoxContainer"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+type_key = "item_box"
+
+[node name="ItemBox3" type="TextureRect" parent="UI/ItemBoxContainer"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+type_key = "item_box"
+
+[node name="Pointer" parent="." instance=ExtResource( 8 )]

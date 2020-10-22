@@ -10,6 +10,7 @@ onready var explosion_particle = preload("res://scenes/Explosion.tscn")
 onready var win_message = preload("res://scenes/WinMessage.tscn")
 onready var potion = preload("res://scenes/Potion.tscn")
 onready var bomb = preload("res://scenes/Bomb.tscn")
+onready var invincible_suit = preload("res://scenes/InvincibleSuit.tscn")
 var won: bool
 var items: Array
 
@@ -25,7 +26,19 @@ func _ready():
 		enemy.position = enemy.amplify_pure_position(enemy.pure_position, enemy.offset_position, Global.TILE_WIDTH)
 		enemy.connect("enemy_dead", self, "on_Enemy_enemy_dead")
 	won = false
-	set_items([bomb, potion, bomb])
+	if Global.get_scene_parameter():
+		var item_nums = Global.get_scene_parameter()
+		var item_scenes = []
+		for num in item_nums:
+			if num == Global.Items.BOMB:
+				item_scenes.push_back(bomb)
+			if num == Global.Items.POTION:
+				item_scenes.push_back(potion)
+			if num == Global.Items.INVINCIBLE_SUIT:
+				item_scenes.push_back(invincible_suit)
+		set_items(item_scenes)
+	else:
+		set_items([bomb, potion, invincible_suit])
 
 func _process(delta):
 	if enemy_wrapper.get_child_count() == 0 && !won:

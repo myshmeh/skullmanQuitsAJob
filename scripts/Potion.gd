@@ -1,8 +1,8 @@
 extends "res://scripts/Item.gd"
 
-export var value: int = 25
 export var offset_y: float = -8
 onready var potion_fx: Particles2D = $ItemInBattleField/PotionFx
+const value: int = Global.POTION_CURE_VALUE
 var used: bool
 
 func _ready():

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/environmentals/explosion_bit1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/InvincibleSuit.gd" type="Script" id=3]
+
+[node name="InvincibleSuit" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="ItemInUI" index="0"]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="ItemInBattleField" index="0"]
+wait_time = 5.0
+one_shot = true
+[connection signal="timeout" from="ItemInBattleField/Timer" to="." method="_on_Timer_timeout"]

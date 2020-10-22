@@ -9,7 +9,6 @@ var fully_elapsed: bool
 
 func _ready():
 	init_elapsed_time()
-	label.text = "round 1 of 3"
 
 func _process(delta):
 	elapsed_time = tick(elapsed_time, delta)

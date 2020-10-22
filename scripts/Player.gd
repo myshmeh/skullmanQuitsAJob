@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var sprite = $Sprite
 export var start_pure_position_x: int = 1
 export var start_pure_position_y: int = 1
 export var life_max: int = 50
@@ -9,6 +10,7 @@ var life: int
 var velocity: Vector2
 var pure_position: Vector2
 var offset_position: Vector2
+var invincible: bool
 signal attack_collided(position)
 signal use_item()
 
@@ -18,6 +20,7 @@ func _ready():
 	offset_position = Vector2.ZERO
 	life = life_max
 	life_indicator.text = String(life)
+	invincible = false
 
 func _process(delta):
 	velocity = translate_input_to_velocity()
@@ -59,6 +62,8 @@ func amplify_pure_position(pure_position: Vector2, offset_position: Vector2, til
 	)
 
 func _on_Player_body_entered(body):
+	if invincible:
+		return
 	emit_signal("attack_collided", position)
 	if !body.has_method("get_power"):
 		printerr(body.name, " does not have a method 'get_power'. consider to extend the Damagable.gd script")
@@ -87,3 +92,11 @@ func set_life_indicator_text(text: String):
 
 func die():
 	print("player is dead")
+
+func enable_invincible_body():
+	invincible = true
+	sprite.material.set_shader_param("active", true)
+
+func disable_invincible_body():
+	invincible = false
+	sprite.material.set_shader_param("active", false)

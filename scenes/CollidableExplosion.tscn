@@ -3,16 +3,19 @@
 [ext_resource path="res://scripts/CollidableExplosion.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Explosion.tscn" type="PackedScene" id=2]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scripts/Damagable.gd\"
 
 onready var collision_shape_2d = $CollisionShape2D
+
+func _ready():
+	power = Global.BOMB_DAMAGE_VALUE
 
 func do_after_damaged():
 	collision_shape_2d.set_deferred(\"disabled\", true)
 "
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 7 )
 
 [node name="CollidableExplosion" instance=ExtResource( 2 )]
@@ -25,8 +28,8 @@ amount = 8
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="1"]
 collision_mask = 6
 mode = 3
-script = SubResource( 2 )
+script = SubResource( 1 )
 power = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )

@@ -18,7 +18,7 @@ position = Vector2( 128, 80 )
 
 [node name="TimeBar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 40 )
-elapsed_time_max = 10.0
+elapsed_time_max = 30.0
 
 [node name="ItemBoxes" type="Node2D" parent="."]
 position = Vector2( 128, 116 )
@@ -43,4 +43,11 @@ position = Vector2( 140, 64 )
 [node name="EnemyWrapper" type="Node2D" parent="."]
 
 [node name="Slime" parent="EnemyWrapper" instance=ExtResource( 6 )]
-position = Vector2( 156, 80 )
+position = Vector2( 172, 64 )
+start_pure_position_x = 2
+start_pure_position_y = 0
+
+[node name="Slime2" parent="EnemyWrapper" instance=ExtResource( 6 )]
+position = Vector2( 140, 96 )
+start_pure_position_x = 0
+start_pure_position_y = 2
